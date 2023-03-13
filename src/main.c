@@ -23,13 +23,14 @@ Takes Brainfuck code from "in\in.bf" and compiles it into C code in "out\out.c"
 ///// Constants /////
 
 const char INFILENAME[] = "..\\in\\in.bf";
+const char OUTFILENAME[] = "..\\out\\out.c";
 
 //////////////////////////////////////////////////////////////////////////////////
 
 ///// Forward Declarations /////
 
 char* getContentsOfFile(const char*);
-
+void writeToFile(const char*, char*);
 bool isBrainfuckSymbol(char);
 
 //////////////////////////////////////////////////////////////////////////////////
@@ -38,15 +39,20 @@ bool isBrainfuckSymbol(char);
 
 int main(void)
 {
-	char* contents = getContentsOfFile(INFILENAME);
+	char* brainfuckCode = getContentsOfFile(INFILENAME);
 
-	printf("Here is file contents maybe...\n");
-	for (int i = 0; i < 30; i++)
-	{
-		printf("%c", contents[i]);
-	}
+	char testThing[] = "bruh moment cringe";
 
-	free(contents);
+	writeToFile(OUTFILENAME, testThing);
+
+	// int i = 0;
+	// while (brainfuckCode[i] != '\0')
+	// {
+	// 	printf("%c", brainfuckCode[i]);
+	// 	i++;
+	// }
+
+	free(brainfuckCode);
 
 	return 0;
 }
@@ -67,7 +73,7 @@ char* getContentsOfFile(const char* fileName)
 		fileSize = ftell(file);
 		fseek(file, 0L, SEEK_SET);
 		
-		char* contents = malloc(sizeof(char) * fileSize);
+		char* ret = malloc(sizeof(char) * fileSize);
 
 		int cntr = 0;
 		char nextChar;
@@ -76,14 +82,32 @@ char* getContentsOfFile(const char* fileName)
 			nextChar = fgetc(file);
 			if (isBrainfuckSymbol(nextChar))
 			{
-				contents[cntr] = nextChar;
+				ret[cntr] = nextChar;
 				cntr++;
 			}
 		}
 		while (nextChar != EOF);
+		ret[cntr] = '\0';
 
 		fclose(file);
-		return contents;
+		return ret;
+	}
+}
+
+void writeToFile(const char* fileName, char* text)
+{
+	FILE* file = fopen(fileName, "w");
+
+	if (file == NULL)
+	{
+		printf("Could not open file\n");
+	}
+	else
+	{
+		fprintf(file, "hohoho bitches");
+		fprintf(file, "bingus schmingus");
+
+		fclose(file);
 	}
 }
 
