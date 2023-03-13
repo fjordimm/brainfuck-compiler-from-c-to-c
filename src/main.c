@@ -102,9 +102,9 @@ int main(void)
 				else if (nex == '<')
 				{ fprintf(file, "ptr--;\n"); }
 				else if (nex == '+')
-				{ fprintf(file, "*ptr++;\n"); }
+				{ fprintf(file, "(*ptr)++;\n"); }
 				else if (nex == '-')
-				{ fprintf(file, "*ptr--;\n"); }
+				{ fprintf(file, "(*ptr)--;\n"); }
 				else if (nex == '.')
 				{ fprintf(file, "putchar(*ptr);\n"); }
 				else if (nex == ',')
