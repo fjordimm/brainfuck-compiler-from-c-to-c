@@ -7,3 +7,42 @@ Brainfuck compiler from C to C
 Takes Brainfuck code from "in\in.bf" and compiles it into C code in "out\out.c"
 
 */
+
+//////////////////////////////////////////////////////////////////////////////////
+
+///// Includes /////
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stddef.h>
+
+//////////////////////////////////////////////////////////////////////////////////
+
+///// Constants /////
+
+const char INFILENAME[] = "..\\in\\in.bf";
+
+//////////////////////////////////////////////////////////////////////////////////
+
+///// Forward Declarations /////
+
+char* getContentsOfFile(char*);
+
+//////////////////////////////////////////////////////////////////////////////////
+
+///// Code /////
+
+int main(void)
+{
+	getContentsOfFile(INFILENAME);
+
+	return 0;
+}
+
+char* getContentsOfFile(char* fileName)
+{
+	printf("bruh moment\n");
+
+	return NULL;
+}
